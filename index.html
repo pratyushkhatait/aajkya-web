@@ -1,53 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AajKya — Meal Planner for Indian Kitchens</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0E0E0E;
-            color: #E0E0E0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 2rem;
-        }
-        h1 { color: #3AB88A; font-size: 2.5rem; margin-bottom: 0.5rem; }
-        p { color: #ADAAAA; font-size: 1.1rem; margin-bottom: 1.5rem; }
-        a {
-            display: inline-block;
-            color: #0E0E0E;
-            background: #3AB88A;
-            padding: 0.75rem 2rem;
-            border-radius: 28px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        a:hover { background: #8DF48E; }
-        .links { margin-top: 2rem; }
-        .links a {
-            background: none;
-            color: #767575;
-            font-size: 0.85rem;
-            padding: 0.5rem 1rem;
-        }
-        .links a:hover { color: #3AB88A; }
-    </style>
-</head>
-<body>
-    <div>
-        <h1>AajKya</h1>
-        <p>Never ask "aaj kya banao?" again. Your week, sorted.</p>
-        <a href="#">Coming soon on Google Play</a>
-        <div class="links">
-            <a href="/privacy.html">Privacy Policy</a>
-        </div>
-    </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f5ee" />
+    <meta name="description" content="AajKya helps Indian households plan meals, personalize family portions, organize groceries, and share cooking instructions. Get the Android app." />
+    <meta property="og:title" content="AajKya — Good food. Less figuring it out." />
+    <meta property="og:description" content="Your family’s meals, portions, groceries, and cooking. A little more organized." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/png" href="./media/logo.png" />
+    <title>AajKya — Meal planning for Indian homes</title>
+  </head>
+  <body>
+    <div id="root"><!--app-html--></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
