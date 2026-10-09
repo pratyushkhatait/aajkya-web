@@ -49,3 +49,5 @@ Tests cover the production subpath, video playback, responsive layouts, mobile n
 
 Inter and Manrope are distributed under SIL OFL 1.1; their copyright and full license notices ship in `public/fonts/Inter-OFL.txt` and `public/fonts/Manrope-OFL.txt`.
 WOFF2 files preserve the full character sets of the original TTFs. The display logo is resized to 128 × 128 pixels for high-density screens.
+
+The homepage footer links to `support.html`, where users can contact support or reach the unchanged `delete-account.html` URL. Account deletion remains available by email without reinstalling the app.

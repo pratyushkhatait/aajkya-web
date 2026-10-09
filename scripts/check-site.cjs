@@ -62,7 +62,10 @@ const server = http.createServer((req,res) => {
     assert.equal(await page.getByRole('button',{name:'Open navigation'}).getAttribute('aria-expanded'),'false');
     await page.evaluate(()=>scrollTo(0,0));
     await page.screenshot({path:path.resolve(__dirname,'../test-results/mobile.png'),fullPage:true});
-    for(const route of ['privacy.html','terms.html','delete-account.html']){
+    await page.locator('footer').getByRole('link',{name:'Support',exact:true}).click();
+    await page.getByRole('link',{name:'Delete your account',exact:true}).click();
+    assert.ok(await page.getByRole('link',{name:'Request account deletion',exact:true}).getAttribute('href').then(h=>h.startsWith('mailto:')));
+    for(const route of ['privacy.html','terms.html','delete-account.html','support.html']){
       await page.goto(url+route);
       assert.ok(await page.locator('h1').textContent());
       await page.getByRole('link',{name:'Back to AajKya'}).click();
