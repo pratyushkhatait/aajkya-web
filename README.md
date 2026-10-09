@@ -36,4 +36,16 @@ No analytics, tracking cookies, user accounts, invented testimonials, or backend
 
 The existing repository is `pratyushkhatait/aajkya-web`. The workflow builds and deploys `dist/` on pushes to `main`, or manual dispatch. Set **Settings → Pages → Build and deployment → Source → GitHub Actions** once before using it. Relative asset paths work at `/aajkya-web/` and at a custom-domain root. Existing `privacy.html`, `terms.html`, and `delete-account.html` destinations are included in the build.
 
-Changes are local until committed and pushed. The workflow is prepared; it does not publish anything merely by running a local build.
+Pull requests run the production build and browser smoke tests. Only main-branch pushes or manual runs on main deploy. To enforce passing checks before merging, make **Build and browser tests** a required check in a repository ruleset.
+
+## Browser checks
+
+After `npm ci`, run `npm run test:install` once, then `npm test`.
+On Linux, install browser system dependencies with `npx playwright install --with-deps chromium`.
+The checker uses Playwright’s pinned Chromium runtime and an ephemeral local port. `CHROME_PATH` is an optional override.
+Tests cover the production subpath, video playback, responsive layouts, mobile navigation, FAQ/transcript, images, legal routes, and prerendering without JavaScript. Screenshots are saved in `test-results/` and uploaded by CI.
+
+## Font licenses and asset optimization
+
+Inter and Manrope are distributed under SIL OFL 1.1; their copyright and full license notices ship in `public/fonts/Inter-OFL.txt` and `public/fonts/Manrope-OFL.txt`.
+WOFF2 files preserve the full character sets of the original TTFs. The display logo is resized to 128 × 128 pixels for high-density screens.

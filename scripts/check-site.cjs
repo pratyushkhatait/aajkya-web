@@ -1,4 +1,4 @@
-// Run with Playwright available in NODE_PATH. Checks the production Pages path.
+// Run npm test after installing Chromium with npm run test:install.
 const { chromium } = require('playwright');
 const http = require('node:http');
 const fs = require('node:fs');
@@ -22,11 +22,12 @@ const server = http.createServer((req,res) => {
   } else { res.writeHead(200, {'Content-Type':contentType,'Content-Length':stat.size}); fs.createReadStream(file).pipe(res); }
 });
 (async()=>{
-  await new Promise(resolve=>server.listen(5174,'127.0.0.1',resolve));
-  const browser = await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
-  const url = 'http://127.0.0.1:5174/aajkya-web/';
-  const errors=[], failed=[];
+  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+  let browser;
   try {
+  browser = await chromium.launch({headless:true,...(process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : {})});
+  const url = `http://127.0.0.1:${server.address().port}/aajkya-web/`;
+  const errors=[], failed=[];
     const page=await browser.newPage({viewport:{width:1440,height:1000}});
     page.on('pageerror',e=>errors.push(e.message));
     page.on('response',r=>{if(r.status()>=400)failed.push(`${r.status()} ${r.url()}`)});
@@ -76,5 +77,5 @@ const server = http.createServer((req,res) => {
     assert.ok(!rendered.includes('<!--app-html-->'));
     assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);
     console.log(JSON.stringify({productionSubpath:'pass',prerenderWithoutJS:'pass',mobileMenu:'pass',faqAndTranscript:'pass',videoPlaybackAndChapterSeek:'pass',legalRoutes:'pass',images:'pass',responsiveWidths:[320,390,768,1440],runtimeErrors:errors},null,2));
-  } finally {await browser.close();server.close()}
+  } finally {await browser?.close();server.close()}
 })().catch(e=>{console.error(e);server.close();process.exitCode=1});
