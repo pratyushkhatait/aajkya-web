@@ -66,6 +66,17 @@ const server = http.createServer((req,res) => {
     }
     await page.setViewportSize({width:390,height:844});
     await page.evaluate(()=>scrollTo(0,0));
+    // Playback-driven changes should reveal the active mobile chapter without moving the page.
+    await page.emulateMedia({reducedMotion:'reduce'});
+    const scrollY = await page.evaluate(()=>window.scrollY);
+    await page.locator('video').evaluate(v=>{v.currentTime=28;v.dispatchEvent(new Event('timeupdate'))});
+    await page.waitForFunction(()=>{
+      const strip=document.querySelector('.chapters').getBoundingClientRect();
+      const active=document.querySelector('.chapter.active').getBoundingClientRect();
+      return active.left>=strip.left-1 && active.right<=strip.right+1;
+    });
+    assert.equal(await page.evaluate(()=>window.scrollY),scrollY);
+    await page.emulateMedia({reducedMotion:'no-preference'});
     await page.getByRole('button',{name:'Open navigation'}).click();
     await page.getByRole('navigation').getByRole('link',{name:'Questions',exact:true}).click();
     assert.equal(await page.getByRole('button',{name:'Open navigation'}).getAttribute('aria-expanded'),'false');

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.myspace.mealplanner';
 // Keep prerendered and hydrated URLs identical at both / and /aajkya-web/.
@@ -53,6 +53,18 @@ export default function App() {
   const [videoError, setVideoError] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [chapter, setChapter] = useState(0);
+  const chapterStrip = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const strip = chapterStrip.current;
+    const active = strip?.children[chapter] as HTMLElement | undefined;
+    if (!strip || !active || strip.scrollWidth <= strip.clientWidth) return;
+    const container = strip.getBoundingClientRect();
+    const card = active.getBoundingClientRect();
+    strip.scrollTo({
+      left: strip.scrollLeft + card.left - container.left - (strip.clientWidth - card.width) / 2,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    });
+  }, [chapter]);
   function playChapter(index: number) {
     setChapter(index);
     if (video.current) {
@@ -112,8 +124,8 @@ export default function App() {
         </div>
         <div className="video-meta"><span>Plan. Swap. Portion. Shop. Share.</span><span>Illustrated walkthrough · App screens may vary</span></div>
         {videoError && <p role="alert">The video couldn’t load. <a href={media('aajkya-demo.mp4')}>Download the walkthrough</a> or try again.</p>}
-        <div className="chapters" aria-label="Jump to a video chapter">{chapters.map((item, index) => <button key={item.name} className={chapter === index ? 'chapter active' : 'chapter'} aria-pressed={chapter === index} aria-label={`Play chapter ${index + 1}: ${item.name}`} onClick={() => playChapter(index)}><span className="chapter-top"><span>0{index + 1}</span><Icon name={item.icon} size={20}/></span><strong>{item.name}</strong><span className="chapter-description">{item.description}</span></button>)}</div>
-        <details className="transcript"><summary>Read the video transcript</summary><ol><li>What’s cooking this week?</li><li>Start with a weekly meal plan for your household.</li><li>Want something different? Choose a replacement dish.</li><li>Review individual portions for each family member.</li><li>Check your groceries and mark what you already have.</li><li>Share the cook’s brief as text or a Hindi voice note.</li><li>Aaj Kya. Your week, planned.</li></ol></details>
+        <div ref={chapterStrip} className="chapters" aria-label="Jump to a video chapter">{chapters.map((item, index) => <button key={item.name} className={chapter === index ? 'chapter active' : 'chapter'} aria-pressed={chapter === index} aria-label={`Play chapter ${index + 1}: ${item.name}`} onClick={() => playChapter(index)}><span className="chapter-top"><span>0{index + 1}</span><Icon name={item.icon} size={20}/></span><strong>{item.name}</strong><span className="chapter-description">{item.description}</span></button>)}</div>
+        <details className="transcript"><summary>Read the video transcript</summary><ol><li>Your meals this week, all planned.</li><li>Plan breakfast, lunch, and dinner for the week, all in one place.</li><li>Not in the mood for a dish? Swap it for something you’d rather eat.</li><li>One shared meal, with a personal portion for everyone at the table.</li><li>Check your grocery list, mark what you have, and shop for the rest.</li><li>Share the dishes and quantities on WhatsApp, as text or a Hindi voice note.</li><li>Aaj Kya. Meal planning made simple.</li></ol></details>
       </section>
       <section className="features-section" id="why-aajkya" aria-labelledby="features-heading"><div className="container section">
         <div className="section-heading"><div><p className="eyebrow">BUILT AROUND YOUR ROUTINE</p><h2 id="features-heading">Shared meals.<br/><em>Individual needs.</em></h2></div><p>Different appetites and goals. One kitchen. AajKya helps you bring them together.</p></div>
