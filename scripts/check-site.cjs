@@ -46,6 +46,11 @@ const server = http.createServer((req,res) => {
     await page.getByRole('button',{name:'Play chapter 3: See your portions'}).click();
     await page.waitForFunction(()=>{const v=document.querySelector('video');return v.currentTime>=16&&v.currentTime<22&&!v.paused});
     assert.equal(await page.locator('video').evaluate(v=>v.duration),40);
+    await page.locator('audio').evaluate(a=>a.play());
+    assert.ok(await page.locator('audio').evaluate(a=>a.duration > 11 && a.duration < 13 && !a.paused));
+    assert.ok(await page.locator('video').evaluate(v=>v.paused));
+    await page.locator('video').evaluate(v=>v.play());
+    assert.ok(await page.locator('audio').evaluate(a=>a.paused));
     await page.locator('video').evaluate(v=>v.pause());
     await page.getByText('Can my family use the same meal plan?',{exact:true}).click();
     assert.equal(await page.locator('.faq-list details[open]').count(),1);
@@ -55,8 +60,28 @@ const server = http.createServer((req,res) => {
       await page.setViewportSize({width,height:900});
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`Overflow at ${width}px`);
     }
+    // Mobile visitors should see food and both actions without scrolling.
+    for (const width of [320,390,430]) {
+      await page.setViewportSize({width,height:680});
+      await page.evaluate(()=>scrollTo(0,0));
+      const visual = await page.locator('.hero-visual').boundingBox();
+      const actions = await page.locator('.hero-actions').boundingBox();
+      assert.ok(visual.y + visual.height < 600, `Food preview below first screen at ${width}px`);
+      assert.ok(actions.y + actions.height < 680, `Actions below first screen at ${width}px`);
+    }
     await page.setViewportSize({width:390,height:844});
     await page.evaluate(()=>scrollTo(0,0));
+    // Playback-driven changes should reveal the active mobile chapter without moving the page.
+    await page.emulateMedia({reducedMotion:'reduce'});
+    const scrollY = await page.evaluate(()=>window.scrollY);
+    await page.locator('video').evaluate(v=>{v.currentTime=28;v.dispatchEvent(new Event('timeupdate'))});
+    await page.waitForFunction(()=>{
+      const strip=document.querySelector('.chapters').getBoundingClientRect();
+      const active=document.querySelector('.chapter.active').getBoundingClientRect();
+      return active.left>=strip.left-1 && active.right<=strip.right+1;
+    });
+    assert.equal(await page.evaluate(()=>window.scrollY),scrollY);
+    await page.emulateMedia({reducedMotion:'no-preference'});
     await page.getByRole('button',{name:'Open navigation'}).click();
     await page.getByRole('navigation').getByRole('link',{name:'Questions',exact:true}).click();
     assert.equal(await page.getByRole('button',{name:'Open navigation'}).getAttribute('aria-expanded'),'false');

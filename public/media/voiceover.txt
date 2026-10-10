@@ -1,0 +1,13 @@
+Voice: Microsoft Neerja Neural, synthetic Indian English, rate 0%. Segments aligned to the existing 40-second illustrated walkthrough.
+
+00s: Your meals this week, all planned.
+04s: Plan breakfast, lunch, and dinner for the week, all in one place.
+10s: Not in the mood for a dish? Swap it for something you’d rather eat.
+16s: One shared meal, with a personal portion for everyone at the table.
+22s: Check your grocery list, mark what you have, and shop for the rest.
+28–35s: Real Hindi cook-note excerpt (source 3.35–8.95s), starting at 28.65s. English: This meal is for two people. Papad, 4 pieces. Matar paneer, 4 katoris.
+35–40s: No narration. AajKya end card with a soft music fade.
+
+Music: original synthesized Cmaj7 / Am7 / Fmaj7 / G6 arpeggio, 80 BPM, no third-party recordings. Mixed quietly beneath speech and faded out over the last 3.5 seconds.
+
+Full sample English translation: Hello. Here is what to make for lunch. This meal is for two people: papad, 4 pieces; matar paneer, 4 katoris; rice, 2½ katoris. Thank you. Rice quantity confirmed by the user.
