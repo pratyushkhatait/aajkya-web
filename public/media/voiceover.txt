@@ -6,4 +6,6 @@ Voice: Microsoft Neerja Neural, synthetic Indian English, rate 0%. Segments alig
 16s: One shared meal, with a personal portion for everyone at the table.
 22s: Check your grocery list, mark what you have, and shop for the rest.
 28s: Share the dishes and quantities on WhatsApp, as text or a Hindi voice note.
-35s: Aaj Kya. Meal planning made simple.
+35–40s: No narration. AajKya end card with a soft music fade.
+
+Music: original synthesized Cmaj7 / Am7 / Fmaj7 / G6 arpeggio, 80 BPM, no third-party recordings. Mixed quietly beneath speech and faded out over the last 3.5 seconds.
