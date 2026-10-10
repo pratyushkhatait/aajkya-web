@@ -13,3 +13,21 @@
 @media(max-width:1050px){.nav-links{gap:24px}.chapter{padding:20px 12px}.chapter strong{font-size:.9rem}.chapter-description{font-size:.78rem}.feature-card{padding:30px}.feature-card h3{font-size:1.85rem}.grocery-card>img{width:155px;height:155px;right:-60px}.nutrition-section{gap:50px}.diary-visual{padding-inline:25px}.faq-section{gap:40px}.download-section{padding:48px}}
 @media(max-width:760px){.menu-toggle{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--line);background:transparent;border-radius:10px;margin-left:auto}.nav-bar{position:relative;gap:15px}.nav-links{gap:0}.nav-links>a:not(.button){display:none}.nav-links.open{position:absolute;top:70px;left:0;right:0;padding:18px;background:var(--cream);border:1px solid var(--line);border-radius:14px;z-index:20;box-shadow:0 15px 30px #18342520;display:grid;gap:8px}.nav-links.open>a:not(.button){display:block;padding:12px}.nav-links.open>.button{margin-top:5px}.chapters{display:flex;overflow-x:auto;scroll-snap-type:x proximity;margin-top:25px}.chapter{min-width:210px;flex:1 0 210px;padding:20px 17px;scroll-snap-align:start}.chapter:first-child{padding-left:17px}.chapter strong{font-size:.95rem}.chapter-description{font-size:.85rem}.chapter-top{margin-bottom:14px}.feature-grid{grid-template-columns:1fr}.feature-card{padding:30px}.feature-card h3{font-size:2rem}.portions-card{grid-row:auto}.portion-screenshot{height:315px;width:330px;margin-top:28px}.grocery-card{min-height:360px}.grocery-card>img{right:-20px;width:170px;height:170px;top:90px;opacity:.4}.cook-card{min-height:310px}.nutrition-section{grid-template-columns:1fr;gap:35px}.nutrition-copy{grid-row:1}.diary-visual{height:440px}.diary-screen{width:270px}.faq-section{grid-template-columns:1fr;gap:35px}.faq-list summary{font-size:.95rem;padding-block:21px}.download-section{padding:38px 27px;border-radius:20px;margin-bottom:35px}.download-section h2{font-size:2.6rem}.download-section .eyebrow{font-size:.6rem}.qr-card{display:none}.footer p{flex-basis:auto}.footer>div{flex-basis:100%;row-gap:16px}.footer .copyright{font-size:.72rem;margin-top:4px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+
+/* The mobile first screen introduces the food and product before supporting copy. */
+@media(max-width:760px){
+ .nav-bar{min-height:64px;gap:12px}.brand{font-size:1.3rem}.brand img{width:34px;height:34px}
+ .nav-links:not(.open){display:none}.nav-links.open{top:58px}.menu-toggle{width:44px;height:44px}
+ .hero{display:flex;flex-direction:column;align-items:stretch;gap:0;min-height:0;padding-block:20px 28px}
+ .hero-copy{display:contents}.hero .eyebrow{order:1;font-size:.62rem;letter-spacing:.12em}.hero .eyebrow-line{display:none}
+ .hero h1{order:2;font-size:clamp(2.4rem,10.4vw,4rem);margin:9px 0 7px;line-height:1.1}.hero h1 br{display:none}.hero h1 em{margin-left:.15em;font-size:1em}
+ .hero-lead{order:3;font-size:.96rem;margin:0 0 17px}.hero-visual{order:4;width:100%;height:220px;margin:0 0 18px}
+ .food-image{inset:0 38px 0 0;border-radius:45px 16px 16px 16px}.food-image img{object-position:55% 50%}
+ .hero-phone{width:113px;right:8px;bottom:0;padding:4px 4px 9px;border-radius:13px;transform:rotate(4deg)}.hero-phone img{border-radius:9px}.hero-phone figcaption{font-size:.48rem;padding-top:5px}
+ .small-note{display:none}.image-label{left:17px;bottom:16px;font-size:.53rem;letter-spacing:.08em}
+ .hero-description{order:5;font-size:.9rem;line-height:1.6;max-width:100%}.hero-actions{order:6;gap:15px;margin-top:15px;justify-content:flex-start}
+ .hero-actions .store-button{padding:8px 13px;gap:8px;min-height:48px;flex-shrink:0;border-radius:9px}.hero-actions .store-button>span{font-size:.95rem;white-space:nowrap}.hero-actions .store-button small{font-size:.49rem}.hero-actions .store-button svg{width:19px}
+ .watch-button{font-size:.8rem;gap:8px;min-height:48px}.watch-button small{font-size:.67rem;margin-top:3px}.play-circle{width:32px;height:32px;flex-shrink:0}
+ .hero-footnote{order:7;font-size:.7rem;margin-top:12px}
+}
+@media(max-width:360px){.hero-visual{height:190px}.hero-phone{width:100px}.hero-actions{gap:12px}.hero-actions .store-button{padding-inline:10px}}

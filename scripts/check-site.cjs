@@ -55,6 +55,15 @@ const server = http.createServer((req,res) => {
       await page.setViewportSize({width,height:900});
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`Overflow at ${width}px`);
     }
+    // Mobile visitors should see food and both actions without scrolling.
+    for (const width of [320,390,430]) {
+      await page.setViewportSize({width,height:680});
+      await page.evaluate(()=>scrollTo(0,0));
+      const visual = await page.locator('.hero-visual').boundingBox();
+      const actions = await page.locator('.hero-actions').boundingBox();
+      assert.ok(visual.y + visual.height < 600, `Food preview below first screen at ${width}px`);
+      assert.ok(actions.y + actions.height < 680, `Actions below first screen at ${width}px`);
+    }
     await page.setViewportSize({width:390,height:844});
     await page.evaluate(()=>scrollTo(0,0));
     await page.getByRole('button',{name:'Open navigation'}).click();

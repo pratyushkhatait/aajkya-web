@@ -83,17 +83,17 @@ export default function App() {
     <main id="main">
       <section className="hero container" aria-labelledby="hero-heading">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-line"/> MEAL PLANNING FOR INDIAN HOMES</p>
+          <p className="eyebrow"><span className="eyebrow-line"/> YOUR INDIAN MEAL PLANNER</p>
           <h1 id="hero-heading">Aaj kya<br/><em>banaye?</em></h1>
           <p className="hero-lead">Good food. Less figuring it out.</p>
-          <p className="hero-description">A plan for your family. Portions for each person. Groceries and cooking, all a little more organized.</p>
-          <div className="hero-actions"><StoreButton /><button className="watch-button" onClick={watchDemo}><span className="play-circle"><Icon name="play" size={18}/></span><span>See how it works<small>40-second walkthrough</small></span></button></div>
+          <p className="hero-description">Plan your week, personalize portions, and get your grocery list.</p>
+          <div className="hero-actions"><StoreButton /><button className="watch-button" onClick={watchDemo}><span className="play-circle"><Icon name="play" size={18}/></span><span>Watch demo<small>40 seconds</small></span></button></div>
           <p className="hero-footnote">Made for the food you already love.</p>
         </div>
         <div className="hero-visual">
           <div className="food-image"><img src={media('food.webp')} alt="An Indian meal with roti, rice, curry, and fresh vegetables" width="1024" height="1024" fetchPriority="high"/><span className="image-label">FAMILIAR FOOD.<br/>ONE LESS DAILY DECISION.</span></div>
           <figure className="hero-phone"><img src={media('planner.webp')} alt="AajKya weekly meal planner showing breakfast, lunch, and dinner" width="1350" height="2274"/><figcaption>Your week, sorted.</figcaption></figure>
-          <div className="small-note"><Icon name="check" size={20}/><span>One plan.<br/><strong>The whole home.</strong></span></div>
+          <div className="small-note"><Icon name="check" size={20}/><span>One plan.<br/><strong>Everyone’s portions.</strong></span></div>
         </div>
       </section>
       <div className="benefits-bar container">
@@ -113,10 +113,10 @@ export default function App() {
         <div className="video-meta"><span>Plan. Swap. Portion. Shop. Share.</span><span>Illustrated walkthrough · App screens may vary</span></div>
         {videoError && <p role="alert">The video couldn’t load. <a href={media('aajkya-demo.mp4')}>Download the walkthrough</a> or try again.</p>}
         <div className="chapters" aria-label="Jump to a video chapter">{chapters.map((item, index) => <button key={item.name} className={chapter === index ? 'chapter active' : 'chapter'} aria-pressed={chapter === index} aria-label={`Play chapter ${index + 1}: ${item.name}`} onClick={() => playChapter(index)}><span className="chapter-top"><span>0{index + 1}</span><Icon name={item.icon} size={20}/></span><strong>{item.name}</strong><span className="chapter-description">{item.description}</span></button>)}</div>
-        <details className="transcript"><summary>Read the video transcript</summary><ol><li>Your everyday question. A plan for the whole home.</li><li>Start with a weekly meal plan for your household.</li><li>Want something different? Choose a replacement dish.</li><li>Review individual portions for each person at home.</li><li>Check your groceries and mark what you already have.</li><li>Share the cook’s brief as text or a Hindi voice note.</li><li>Meet AajKya. Meal planning for Indian homes.</li></ol></details>
+        <details className="transcript"><summary>Read the video transcript</summary><ol><li>Your everyday question. A plan for the whole family.</li><li>Start with a weekly meal plan for your household.</li><li>Want something different? Choose a replacement dish.</li><li>Review individual portions for each family member.</li><li>Check your groceries and mark what you already have.</li><li>Share the cook’s brief as text or a Hindi voice note.</li><li>Meet Aaj Kya. Meal planning for the food you love.</li></ol></details>
       </section>
       <section className="features-section" id="why-aajkya" aria-labelledby="features-heading"><div className="container section">
-        <div className="section-heading"><div><p className="eyebrow">BUILT AROUND YOUR HOME</p><h2 id="features-heading">Shared meals.<br/><em>Individual needs.</em></h2></div><p>Different appetites and goals. One kitchen. AajKya helps you bring them together.</p></div>
+        <div className="section-heading"><div><p className="eyebrow">BUILT AROUND YOUR ROUTINE</p><h2 id="features-heading">Shared meals.<br/><em>Individual needs.</em></h2></div><p>Different appetites and goals. One kitchen. AajKya helps you bring them together.</p></div>
         <div className="feature-grid">
           <article className="feature-card portions-card"><div className="feature-icon"><Icon name="people" size={26}/></div><p className="feature-kicker">FOR EVERYONE AT THE TABLE</p><h3>One family meal.<br/>Your own portion.</h3><p>A shared menu with personalized servings, in familiar units like katoris, bowls, and rotis.</p><div className="portion-screenshot"><img src={media('portions.webp')} alt="AajKya meal detail showing individual servings and total cooking quantities" width="1350" height="2274" loading="lazy"/></div><span className="screenshot-caption">AajKya app · Meal details</span></article>
           <article className="feature-card grocery-card"><div className="grocery-copy"><div className="feature-icon"><Icon name="list" size={26}/></div><p className="feature-kicker">READY FOR THE WEEK</p><h3>Your meals.<br/>Your shopping list.</h3><p>Groceries from your meal plan, with pantry staples kept separate. Check what you have before you shop.</p></div><img src={media('vegetables.webp')} alt="Fresh vegetables for everyday Indian cooking" width="300" height="300" loading="lazy"/></article>
@@ -130,6 +130,6 @@ export default function App() {
       <section className="faq-section container section" id="questions" aria-labelledby="faq-heading"><div className="faq-intro"><p className="eyebrow">A FEW THINGS YOU MIGHT ASK</p><h2 id="faq-heading">Before you<br/><em>set the table.</em></h2><p>Something else on your mind?<br/><a href="mailto:support@aajkya.co.in">Get in touch with us.</a></p></div><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span className="faq-symbol" aria-hidden="true"/></summary><p>{answer}</p></details>)}</div></section>
       <section className="download-section container" id="download" aria-labelledby="download-heading"><div><p className="eyebrow">LET’S TAKE ONE THING OFF YOUR PLATE</p><h2 id="download-heading">Good food.<br/><em>Less figuring it out.</em></h2><p>Your next meal plan is waiting.</p><StoreButton/></div><a className="qr-card" href={PLAY_STORE} target="_blank" rel="noreferrer" aria-label="Get AajKya on Google Play"><img src={media('play-store-qr.svg')} width="150" height="150" alt="QR code linking to AajKya on Google Play" loading="lazy"/><span>Scan. Download. Plan.</span><small>Available on Android</small></a></section>
     </main>
-    <footer className="container footer"><Brand/><p>Made for everyday Indian homes.</p><div><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a><a href="./support.html">Support</a><a href="mailto:support@aajkya.co.in">Contact</a></div><small className="copyright">© {new Date().getFullYear()} AajKya. All rights reserved.</small></footer>
+    <footer className="container footer"><Brand/><p>Everyday meals, made simpler.</p><div><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a><a href="./support.html">Support</a><a href="mailto:support@aajkya.co.in">Contact</a></div><small className="copyright">© {new Date().getFullYear()} AajKya. All rights reserved.</small></footer>
   </>;
 }
