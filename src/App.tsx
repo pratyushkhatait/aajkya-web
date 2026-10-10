@@ -49,6 +49,7 @@ function StoreButton({ compact = false }: { compact?: boolean }) {
 
 export default function App() {
   const video = useRef<HTMLVideoElement>(null);
+  const cookAudio = useRef<HTMLAudioElement>(null);
   const [started, setStarted] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -97,6 +98,7 @@ export default function App() {
         <div className="hero-copy">
           <p className="eyebrow"><span className="eyebrow-line"/> YOUR INDIAN MEAL PLANNER</p>
           <h1 id="hero-heading">Aaj kya<br/><em>banaye?</em></h1>
+          <p className="hero-translation">What shall we cook today?</p>
           <p className="hero-lead">Good food. Less figuring it out.</p>
           <p className="hero-description">Plan your week, personalize portions, and get your grocery list.</p>
           <div className="hero-actions"><StoreButton /><button className="watch-button" onClick={watchDemo}><span className="play-circle"><Icon name="play" size={18}/></span><span>Watch demo<small>40 seconds</small></span></button></div>
@@ -116,7 +118,7 @@ export default function App() {
       <section className="demo-section container section" id="how-it-works" aria-labelledby="demo-heading">
         <div className="section-heading"><div><p className="eyebrow">A LITTLE LESS EVERYDAY EFFORT</p><h2 id="demo-heading">From “what’s for lunch?”<br/>to <em>“it’s all planned.”</em></h2></div><p>Take a quick look at how AajKya brings your meals, groceries, and family portions together.</p></div>
         <div className="video-shell">
-          <video ref={video} controls playsInline preload="none" poster={media('demo-poster.webp')} onPlay={() => setStarted(true)} onTimeUpdate={() => { const time = video.current?.currentTime || 0; setChapter(Math.max(0, chapters.findLastIndex(c => time >= c.time))); }} onError={() => setVideoError(true)} aria-label="AajKya illustrated product walkthrough">
+          <video ref={video} controls playsInline preload="none" poster={media('demo-poster.webp')} onPlay={() => { setStarted(true); cookAudio.current?.pause(); }} onTimeUpdate={() => { const time = video.current?.currentTime || 0; setChapter(Math.max(0, chapters.findLastIndex(c => time >= c.time))); }} onError={() => setVideoError(true)} aria-label="AajKya illustrated product walkthrough">
             <source src={media('aajkya-demo.mp4')} type="video/mp4"/><track kind="captions" src={media('captions.vtt')} srcLang="en" label="English"/>
             Your browser does not support this video. <a href={media('aajkya-demo.mp4')}>Download the walkthrough.</a>
           </video>
@@ -125,14 +127,14 @@ export default function App() {
         <div className="video-meta"><span>Plan. Swap. Portion. Shop. Share.</span><span>Illustrated walkthrough · App screens may vary</span></div>
         {videoError && <p role="alert">The video couldn’t load. <a href={media('aajkya-demo.mp4')}>Download the walkthrough</a> or try again.</p>}
         <div ref={chapterStrip} className="chapters" aria-label="Jump to a video chapter">{chapters.map((item, index) => <button key={item.name} className={chapter === index ? 'chapter active' : 'chapter'} aria-pressed={chapter === index} aria-label={`Play chapter ${index + 1}: ${item.name}`} onClick={() => playChapter(index)}><span className="chapter-top"><span>0{index + 1}</span><Icon name={item.icon} size={20}/></span><strong>{item.name}</strong><span className="chapter-description">{item.description}</span></button>)}</div>
-        <details className="transcript"><summary>Read the video transcript</summary><ol><li>Your meals this week, all planned.</li><li>Plan breakfast, lunch, and dinner for the week, all in one place.</li><li>Not in the mood for a dish? Swap it for something you’d rather eat.</li><li>One shared meal, with a personal portion for everyone at the table.</li><li>Check your grocery list, mark what you have, and shop for the rest.</li><li>Share the dishes and quantities on WhatsApp, as text or a Hindi voice note.</li><li>End card: AajKya. Soft music fades.</li></ol></details>
+        <details className="transcript"><summary>Read the video transcript</summary><ol><li>Your meals this week, all planned.</li><li>Plan breakfast, lunch, and dinner for the week, all in one place.</li><li>Not in the mood for a dish? Swap it for something you’d rather eat.</li><li>One shared meal, with a personal portion for everyone at the table.</li><li>Check your grocery list, mark what you have, and shop for the rest.</li><li>Sample Hindi note: This meal is for two people. Papad: four pieces. Matar paneer: four katoris.</li><li>End card: AajKya. Soft music fades.</li></ol></details>
       </section>
       <section className="features-section" id="why-aajkya" aria-labelledby="features-heading"><div className="container section">
         <div className="section-heading"><div><p className="eyebrow">BUILT AROUND YOUR ROUTINE</p><h2 id="features-heading">Shared meals.<br/><em>Individual needs.</em></h2></div><p>Different appetites and goals. One kitchen. AajKya helps you bring them together.</p></div>
         <div className="feature-grid">
           <article className="feature-card portions-card"><div className="feature-icon"><Icon name="people" size={26}/></div><p className="feature-kicker">FOR EVERYONE AT THE TABLE</p><h3>One family meal.<br/>Your own portion.</h3><p>A shared menu with personalized servings, in familiar units like katoris, bowls, and rotis.</p><div className="portion-screenshot"><img src={media('portions.webp')} alt="AajKya meal detail showing individual servings and total cooking quantities" width="1350" height="2274" loading="lazy"/></div><span className="screenshot-caption">AajKya app · Meal details</span></article>
           <article className="feature-card grocery-card"><div className="grocery-copy"><div className="feature-icon"><Icon name="list" size={26}/></div><p className="feature-kicker">READY FOR THE WEEK</p><h3>Your meals.<br/>Your shopping list.</h3><p>Groceries from your meal plan, with pantry staples kept separate. Check what you have before you shop.</p></div><img src={media('vegetables.webp')} alt="Fresh vegetables for everyday Indian cooking" width="300" height="300" loading="lazy"/></article>
-          <article className="feature-card cook-card"><div className="feature-icon"><Icon name="chat" size={26}/></div><p className="feature-kicker">FROM THE PLAN TO THE PAN</p><h3>Keep your cook<br/>in the loop.</h3><p>Share what to make and how much through WhatsApp. Add a Hindi voice note when that’s easier.</p><div className="cook-tags"><span><Icon name="check" size={16}/> Dishes & quantities</span><span><Icon name="check" size={16}/> Hindi voice notes</span></div></article>
+          <article className="feature-card cook-card"><div className="feature-icon"><Icon name="chat" size={26}/></div><p className="feature-kicker">FROM THE PLAN TO THE PAN</p><h3>Keep your cook<br/>in the loop.</h3><p>Share what to make and how much through WhatsApp. Add a Hindi voice note when that’s easier.</p><div className="cook-sample"><p id="cook-sample-label">Hear a sample Hindi voice note · 12 seconds</p><audio ref={cookAudio} controls preload="none" aria-labelledby="cook-sample-label" onPlay={() => video.current?.pause()}><source src={media('cook-note.m4a')} type="audio/mp4"/> <a href={media('cook-note.m4a')}>Download the sample</a></audio><details><summary>Read the English translation</summary><p>Hello. Here is what to make for lunch. This meal is for two people: papad, 4 pieces; matar paneer, 4 katoris; rice, 2½ katoris. Thank you.</p></details></div><div className="cook-tags"><span><Icon name="check" size={16}/> Dishes & quantities</span><span><Icon name="check" size={16}/> Hindi voice notes</span></div></article>
         </div>
       </div></section>
       <section className="nutrition-section container section" aria-labelledby="nutrition-heading">

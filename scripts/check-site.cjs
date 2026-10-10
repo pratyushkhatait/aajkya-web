@@ -46,6 +46,11 @@ const server = http.createServer((req,res) => {
     await page.getByRole('button',{name:'Play chapter 3: See your portions'}).click();
     await page.waitForFunction(()=>{const v=document.querySelector('video');return v.currentTime>=16&&v.currentTime<22&&!v.paused});
     assert.equal(await page.locator('video').evaluate(v=>v.duration),40);
+    await page.locator('audio').evaluate(a=>a.play());
+    assert.ok(await page.locator('audio').evaluate(a=>a.duration > 11 && a.duration < 13 && !a.paused));
+    assert.ok(await page.locator('video').evaluate(v=>v.paused));
+    await page.locator('video').evaluate(v=>v.play());
+    assert.ok(await page.locator('audio').evaluate(a=>a.paused));
     await page.locator('video').evaluate(v=>v.pause());
     await page.getByText('Can my family use the same meal plan?',{exact:true}).click();
     assert.equal(await page.locator('.faq-list details[open]').count(),1);

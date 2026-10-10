@@ -31,3 +31,6 @@
  .hero-footnote{order:7;font-size:.7rem;margin-top:12px}
 }
 @media(max-width:360px){.hero-visual{height:190px}.hero-phone{width:100px}.hero-actions{gap:12px}.hero-actions .store-button{padding-inline:10px}}
+
+.hero-translation{font-size:1rem;color:var(--muted);margin:-10px 0 20px}.cook-sample{margin-top:22px}.cook-sample>p{font-weight:600;font-size:.8rem!important}.cook-sample audio{display:block;width:100%;max-width:360px;margin:12px 0}.cook-sample summary{cursor:pointer;font-size:.8rem;min-height:44px;display:flex;align-items:center;text-decoration:underline}.cook-sample details p{font-size:.85rem!important}
+@media(max-width:760px){.hero-translation{order:3;font-size:.82rem;margin:0 0 9px}.hero-lead{order:3}.hero-visual{height:205px}}
