@@ -52,4 +52,4 @@ WOFF2 files preserve the full character sets of the original TTFs. The display l
 
 The homepage footer links to `support.html`, where users can contact support or reach the unchanged `delete-account.html` URL. Account deletion remains available by email without reinstalling the app.
 
-The mobile hero prioritizes the food/app preview and compact actions within the first screen. The illustrated demo includes synthetic Indian-English narration (macOS Rishi); its timed script is in `public/media/voiceover.txt`, with matching WebVTT captions and an on-page transcript. Playback remains user initiated.
+The mobile hero prioritizes the food/app preview and compact actions within the first screen. The illustrated demo includes synthetic Indian-English narration (Microsoft Neerja Neural); its timed script is in `public/media/voiceover.txt`, with matching WebVTT captions and an on-page transcript. Playback remains user initiated.

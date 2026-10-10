@@ -1,9 +1,9 @@
-Voice: macOS Rishi, synthetic Indian English, 165 words/minute. Segments aligned to the existing 40-second illustrated walkthrough.
+Voice: Microsoft Neerja Neural, synthetic Indian English, rate -5%. Segments aligned to the existing 40-second illustrated walkthrough.
 
-00s: Your everyday question. A plan for the whole family.
+00s: What’s cooking this week?
 04s: Start with a weekly meal plan for your household.
 10s: Want something different? Choose a replacement dish.
 16s: Review individual portions for each family member.
 22s: Check your groceries and mark what you already have.
 28s: Share the cook’s brief as text or a Hindi voice note.
-35s: Meet Aaj Kya. Meal planning for the food you love.
+35s: Aaj Kya. Your week, planned.
