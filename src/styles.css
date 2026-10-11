@@ -34,3 +34,22 @@
 
 .hero-translation{font-size:1rem;color:var(--muted);margin:-10px 0 20px}.cook-sample{margin-top:22px}.cook-sample>p{font-weight:600;font-size:.8rem!important}.cook-sample audio{display:block;width:100%;max-width:360px;margin:12px 0}.cook-sample summary{cursor:pointer;font-size:.8rem;min-height:44px;display:flex;align-items:center;text-decoration:underline}.cook-sample details p{font-size:.85rem!important}
 @media(max-width:760px){.hero-translation{order:3;font-size:.82rem;margin:0 0 9px}.hero-lead{order:3}.hero-visual{height:205px}}
+
+.mobile-chapter-description,.nutrition-toggle{display:none}.nutrition-content{display:contents}
+@media(max-width:760px){
+ .section{padding-block:32px}.section-heading{margin-bottom:20px}.section-heading h2{font-size:1.9rem}.section-heading>p{margin-top:12px;font-size:.9rem}.section-heading .eyebrow{margin-bottom:10px}
+ .benefits-bar{display:none}
+ .chapters{margin-top:20px}.chapter{min-width:150px;flex-basis:150px;padding:12px!important}.chapter-top{margin-bottom:8px}.chapter strong{font-size:.85rem;margin:0}.chapter-description{display:none}.chapter-top svg{width:17px;height:17px}
+ .mobile-chapter-description{display:block;font-size:.85rem;color:var(--muted);line-height:1.6;margin-top:12px;min-height:44px}.transcript{margin-top:8px}.transcript summary{min-height:44px;display:flex;align-items:center;padding:0}
+ .feature-grid{gap:0}.feature-card{border-radius:0;padding:20px 0;min-height:0;background:none;color:var(--ink);overflow:visible;display:block;border-top:1px solid #cfd5c5}
+ .feature-card .feature-icon{float:left;width:30px;height:30px;margin:0 12px 10px 0;border:0;color:var(--green)}.feature-card .feature-icon svg{width:24px;height:24px}
+ .feature-kicker,.portion-screenshot,.screenshot-caption,.grocery-card>img,.cook-tags{display:none}
+ .feature-card h3{font-size:1.2rem;margin:0 0 10px;line-height:1.4}.feature-card h3 br{display:none}.feature-card h3 br:after{content:' '}
+ .feature-card h3{word-spacing:.02em}.feature-card p:not(.feature-kicker){font-size:.9rem;color:var(--muted);max-width:none;clear:both}
+ .grocery-card .grocery-copy,.grocery-card h3,.grocery-card p:not(.feature-kicker){max-width:none}.cook-sample{margin-top:14px}.cook-sample audio{margin:8px 0}.cook-sample summary{min-height:44px}
+ .nutrition-section{display:block;padding-block:20px}.nutrition-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:16px;background:none;border:0;padding:12px 0;text-align:left;color:var(--ink);min-height:64px}.nutrition-toggle strong{display:block;font-family:Manrope,sans-serif;font-size:1.2rem}.nutrition-toggle small{display:block;color:var(--muted);font-size:.85rem;line-height:1.6;margin-top:5px}.nutrition-toggle>span:last-child{font-size:1.5rem}
+ .nutrition-content{display:none}.nutrition-open .nutrition-content{display:grid;gap:20px;margin-top:20px}.nutrition-copy h2{font-size:1.8rem}.nutrition-copy>p:not(.eyebrow){margin-top:14px;font-size:.9rem}.nutrition-copy .eyebrow{display:none}.diary-visual{height:300px;padding-top:24px}.diary-screen{width:215px}.check-list{gap:10px;margin-block:18px}
+ .faq-section{gap:20px}.faq-intro .eyebrow,.faq-intro p:last-child{display:none}.faq-intro h2{font-size:1.9rem}.faq-intro h2 br{display:none}.faq-list summary{padding-block:16px;font-size:.9rem}.faq-list details p{padding-bottom:18px}
+ .download-section{padding:24px;margin-bottom:24px}.download-section .eyebrow,.download-section p:not(.eyebrow){display:none}.download-section h2{font-size:1.9rem}.download-section .store-button{margin-top:18px;padding:10px 16px;min-height:48px}.download-section .store-button>span{font-size:1rem}
+ .footer{padding-block:24px;gap:16px}.footer p{display:none}.footer .copyright{padding-top:16px}
+}

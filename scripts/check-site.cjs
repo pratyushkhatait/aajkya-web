@@ -55,7 +55,7 @@ const server = http.createServer((req,res) => {
     await page.getByText('Can my family use the same meal plan?',{exact:true}).click();
     assert.equal(await page.locator('.faq-list details[open]').count(),1);
     await page.getByText('Read the video transcript',{exact:true}).click();
-    assert.equal(await page.locator('.transcript[open] li').count(),7);
+    assert.equal(await page.locator('.transcript[open] li').count(),6);
     for(const width of [320,390,768,1440]){
       await page.setViewportSize({width,height:900});
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`Overflow at ${width}px`);
@@ -69,6 +69,20 @@ const server = http.createServer((req,res) => {
       assert.ok(visual.y + visual.height < 600, `Food preview below first screen at ${width}px`);
       assert.ok(actions.y + actions.height < 680, `Actions below first screen at ${width}px`);
     }
+    await page.setViewportSize({width:390,height:844});
+    // Compact mobile content remains accessible through the nutrition disclosure.
+    await page.locator('.transcript').evaluate(e=>e.open=false);
+    await page.locator('.faq-list details[open]').evaluateAll(es=>es.forEach(e=>e.open=false));
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollHeight<3700),'Mobile page exceeds compact length budget');
+    const nutritionToggle = page.getByRole('button',{name:/Nutrition tracking/});
+    assert.equal(await nutritionToggle.getAttribute('aria-expanded'),'false');
+    assert.equal(await page.locator('#nutrition-content').isVisible(),false);
+    await nutritionToggle.click();
+    assert.equal(await page.locator('#nutrition-content').isVisible(),true);
+    await nutritionToggle.click();
+    await page.setViewportSize({width:1440,height:900});
+    assert.equal(await page.locator('.nutrition-copy').isVisible(),true);
+    assert.equal(await page.locator('.portion-screenshot').isVisible(),true);
     await page.setViewportSize({width:390,height:844});
     await page.evaluate(()=>scrollTo(0,0));
     // Playback-driven changes should reveal the active mobile chapter without moving the page.
