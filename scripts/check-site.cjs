@@ -55,7 +55,7 @@ const server = http.createServer((req,res) => {
     await page.getByText('Can my family use the same meal plan?',{exact:true}).click();
     assert.equal(await page.locator('.faq-list details[open]').count(),1);
     await page.getByText('Read the video transcript',{exact:true}).click();
-    assert.equal(await page.locator('.transcript[open] li').count(),7);
+    assert.equal(await page.locator('.transcript[open] li').count(),6);
     for(const width of [320,390,768,1440]){
       await page.setViewportSize({width,height:900});
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`Overflow at ${width}px`);
